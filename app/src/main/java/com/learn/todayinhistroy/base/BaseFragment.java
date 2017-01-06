@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseFragment extends Fragment {
-    protected Activity context;
+    protected static Activity context;
 
     @Nullable
     @Override

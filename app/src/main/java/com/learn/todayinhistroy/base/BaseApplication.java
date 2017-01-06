@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 /**
  * Created by yangxuqiang on 2016/12/22.
  */
 
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
     public static Context overallContext;
     private static BaseApplication application;
 

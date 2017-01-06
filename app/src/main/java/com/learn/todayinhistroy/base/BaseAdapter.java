@@ -56,6 +56,12 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
 
     protected abstract void convert(Context context, BaseViewHolder holder, T t);
 
+    public void updata(List data){
+        this.data.clear();
+        this.data.addAll(data);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return data!=null?data.size():0;

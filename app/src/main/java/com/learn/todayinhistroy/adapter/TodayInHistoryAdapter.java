@@ -2,6 +2,7 @@ package com.learn.todayinhistroy.adapter;
 
 import android.content.Context;
 
+import com.learn.todayinhistroy.R;
 import com.learn.todayinhistroy.base.BaseAdapter;
 import com.learn.todayinhistroy.base.BaseViewHolder;
 import com.learn.todayinhistroy.bean.TodayInHistoryListEntity;
@@ -19,6 +20,7 @@ public class TodayInHistoryAdapter extends BaseAdapter {
     @Override
     protected void convert(Context context, BaseViewHolder holder, Object o) {
         TodayInHistoryListEntity entity=(TodayInHistoryListEntity)o;
-        //TODO
+        holder.setText(R.id.item_time,entity.getDate());
+        holder.setText(R.id.item_desc,entity.getTitle());
     }
 }

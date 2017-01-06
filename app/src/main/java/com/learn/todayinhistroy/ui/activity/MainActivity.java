@@ -13,7 +13,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.learn.todayinhistroy.R;
 import com.learn.todayinhistroy.base.BaseActivity;
@@ -24,6 +26,7 @@ import com.learn.todayinhistroy.ui.fragment.LikeFragment;
 import com.learn.todayinhistroy.ui.fragment.TodayInHistoryFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
