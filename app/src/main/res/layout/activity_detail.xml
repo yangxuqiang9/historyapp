@@ -53,6 +53,7 @@
 
             </FrameLayout>
             <android.support.v7.widget.Toolbar
+                android:id="@+id/derail_toolbar"
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|enterAlways"
                 android:layout_width="match_parent"

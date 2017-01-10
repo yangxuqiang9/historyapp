@@ -33,7 +33,6 @@ public interface RequestService {
     @POST("queryDetail.php")
     Observable<HttpRequest<Histroy<Picture>>> getHistoryDetail(@Field("Key") String key,@Field("e_id") String e_id);
 
-    @FormUrlEncoded
     @GET("data/福利/{num}/{page}")
     Observable<GrilHttpResponse<List<GrilBean>>> getGrilList(@Path("num") int num, @Path("page") int page);
 }

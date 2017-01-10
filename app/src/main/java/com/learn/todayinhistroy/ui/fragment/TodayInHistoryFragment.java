@@ -77,7 +77,8 @@ public class TodayInHistoryFragment extends BaseFragment implements TodayInHisto
             @Override
             public void itemClick(View v, int position) {
                 Intent intent = new Intent(context, DetailActivity.class);
-
+                intent.putExtra("id",data.get(position).getE_id());
+                intent.putExtra("date","");
                 startActivity(intent);
 //                context.overridePendingTransition();
             }
