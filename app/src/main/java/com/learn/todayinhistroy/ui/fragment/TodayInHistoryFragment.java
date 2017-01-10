@@ -1,5 +1,6 @@
 package com.learn.todayinhistroy.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,10 +17,12 @@ import android.widget.Toast;
 
 import com.learn.todayinhistroy.R;
 import com.learn.todayinhistroy.adapter.TodayInHistoryAdapter;
+import com.learn.todayinhistroy.base.BaseAdapter;
 import com.learn.todayinhistroy.base.BaseFragment;
 import com.learn.todayinhistroy.bean.TodayInHistoryListEntity;
 import com.learn.todayinhistroy.mvp.contact.TodayInHistoryContact;
 import com.learn.todayinhistroy.mvp.presenter.TodayInHistoryPresenter;
+import com.learn.todayinhistroy.ui.activity.DetailActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -68,6 +71,15 @@ public class TodayInHistoryFragment extends BaseFragment implements TodayInHisto
             @Override
             public void onRefresh() {
                 new TodayInHistoryPresenter(TodayInHistoryFragment.this).getData(1,1);
+            }
+        });
+        todayInHistoryAdapter.setOnItemClickListener(new BaseAdapter.ItemClickListener() {
+            @Override
+            public void itemClick(View v, int position) {
+                Intent intent = new Intent(context, DetailActivity.class);
+
+                startActivity(intent);
+//                context.overridePendingTransition();
             }
         });
     }

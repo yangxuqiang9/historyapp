@@ -19,6 +19,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
     private Context context;
     private ItemClickListener listener;
     private LongTouchListener longTouchListener;
+    private View inflate;
 
     public BaseAdapter(Context context, List<T> data, int myLayoutId){
         this.data=data;
@@ -28,7 +29,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(myLayoutId, null);
+        inflate = LayoutInflater.from(context).inflate(myLayoutId, null);
         return new BaseViewHolder(inflate);
     }
 
@@ -36,7 +37,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
     public void onBindViewHolder(BaseViewHolder holder, final int position) {
         convert(context,holder,data.get(position));
         if(listener!=null){
-            holder.getView(myLayoutId).setOnClickListener(new View.OnClickListener() {
+            inflate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listener.itemClick(v,position);
@@ -44,7 +45,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
             });
         }
         if(longTouchListener!=null){
-            holder.getView(myLayoutId).setOnTouchListener(new View.OnTouchListener() {
+            inflate.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     longTouchListener.touch(v,event,position);
