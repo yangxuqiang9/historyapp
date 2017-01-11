@@ -7,10 +7,12 @@ package com.learn.todayinhistroy.mvp.contact;
 public class GrilContact {
     public interface View{
         void showView(Object o);
+        void loadMore(Object o);
         void showFaild(String e);
     }
     public interface presenter{
         void getData(int page,int row);
+        void loadMore(int page);
         void detachView();
     }
 }

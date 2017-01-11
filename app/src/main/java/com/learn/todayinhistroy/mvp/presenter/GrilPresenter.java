@@ -45,6 +45,27 @@ public class GrilPresenter implements GrilContact.presenter {
     }
 
     @Override
+    public void loadMore(int page) {
+        RetrofitHelper.getIntance().getGrilList(page,16).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GrilHttpResponse<List<GrilBean>>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        view.showFaild(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(GrilHttpResponse<List<GrilBean>> listGrilHttpResponse) {
+                        view.loadMore(listGrilHttpResponse.getResults());
+                    }
+                });
+    }
+
+    @Override
     public void detachView() {
         view=null;
     }

@@ -3,6 +3,7 @@ package com.learn.todayinhistroy.adapter;
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class GrilAdapter extends RecyclerView.Adapter {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 //TODO
-
+                Log.e("newstate:" ,newState+"");
             }
         });
     }

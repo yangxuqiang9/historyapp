@@ -32,6 +32,7 @@ public class GrilFragment extends BaseFragment implements GrilContact.View {
     SwipeRefreshLayout swipeRefresh;
     private List data=new ArrayList();
     private GrilAdapter grilAdapter;
+    private GrilPresenter grilPresenter;
 
     @Override
     protected void initEvent() {
@@ -39,7 +40,7 @@ public class GrilFragment extends BaseFragment implements GrilContact.View {
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                grilPresenter.getData(1,16);
             }
         });
 
@@ -48,7 +49,7 @@ public class GrilFragment extends BaseFragment implements GrilContact.View {
         grilAdapter = new GrilAdapter(context, data,recyclerView);
         recyclerView.setAdapter(grilAdapter);
 
-        GrilPresenter grilPresenter = new GrilPresenter(this);
+        grilPresenter = new GrilPresenter(this);
         grilPresenter.getData(1,16);
     }
 
@@ -61,10 +62,22 @@ public class GrilFragment extends BaseFragment implements GrilContact.View {
     public void showView(Object o) {
         List<GrilBean> list= (List<GrilBean>) o;
         grilAdapter.updata(list);
+
+        if(swipeRefresh!=null&&swipeRefresh.isRefreshing())
+            swipeRefresh.setRefreshing(false);
+    }
+
+    @Override
+    public void loadMore(Object p) {
+        List<GrilBean> more=(List<GrilBean>) p;
+        grilAdapter.notifyItemRangeInserted(data.size(),data.size()+more.size());
+        data.addAll(more);
     }
 
     @Override
     public void showFaild(String e) {
+        if(swipeRefresh!=null&&swipeRefresh.isRefreshing())
+            swipeRefresh.setRefreshing(false);
         Toast.makeText(context,e,Toast.LENGTH_LONG).show();
     }
 }

@@ -1,7 +1,11 @@
 package com.learn.todayinhistroy.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.WindowManager;
 
 /**
@@ -20,5 +24,19 @@ public class ScreenUtils {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         service.getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
+    }
+    public static Bitmap snapShotWithoutStatusBar(Activity activity){
+        View decorView = activity.getWindow().getDecorView();
+        decorView.setDrawingCacheEnabled(true);
+        decorView.buildDrawingCache();
+        Bitmap drawingCache = decorView.getDrawingCache();
+        Rect rect = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+        int top = rect.top;
+        int width = rect.width();
+        int height = rect.height();
+        Bitmap bitmap = Bitmap.createBitmap(drawingCache, 0, top, width, height - top);
+        decorView.destroyDrawingCache();
+        return bitmap;
     }
 }
