@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.umeng.message.PushAgent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         this.mContext=this;
         mActivitys.add(this);
         ButterKnife.bind(this);
+        //启动友盟推送
+        PushAgent.getInstance(this).onAppStart();
     }
 
     protected abstract int getLayoutId();
