@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 apply plugin: 'android-apt'
@@ -34,11 +36,23 @@ android {
         release {
             minifyEnabled true
             zipAlignEnabled true
-            shrinkResources false
+            shrinkResources true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    applicationVariants.all{ variants ->
+        variants.outputs.each { output ->
+
+            output.outputFile=new File("litu"+output.versionCode+buildTime()+".apk")
+        }
+
+    }
+
+}
+def buildTime(){
+    def format=new SimpleDateFormat("yyyyMMdd")
+    return format.format(new Date())
 }
 
 
