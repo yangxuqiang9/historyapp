@@ -1,10 +1,12 @@
 package com.learn.todayinhistroy.base;
 
 import android.app.Activity;
+import android.app.Application;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.umeng.message.PushAgent;
@@ -31,6 +33,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         ButterKnife.bind(this);
         //启动友盟推送
         PushAgent.getInstance(this).onAppStart();
+        BaseApplication application = (BaseApplication) getApplication();
+        String registrationId = application.mPushAgent.getRegistrationId();
+        Log.d("tokenid",registrationId);
     }
 
     protected abstract int getLayoutId();

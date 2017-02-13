@@ -18,6 +18,7 @@ import com.umeng.message.PushAgent;
 public class BaseApplication extends MultiDexApplication {
     public static Context overallContext;
     private static BaseApplication application;
+    public PushAgent mPushAgent;
 
     @Override
     public void onCreate() {
@@ -30,18 +31,19 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     private void registUmeng() {
-        PushAgent mPushAgent = PushAgent.getInstance(this);
+        mPushAgent = PushAgent.getInstance(this);
         //注册推送服务，每次调用register方法都会回调该接口
         mPushAgent.register(new IUmengRegisterCallback() {
 
             @Override
             public void onSuccess(String deviceToken) {
                 //注册成功会返回device token
+                Log.d("注册成功","devicetoken:"+deviceToken);
             }
 
             @Override
             public void onFailure(String s, String s1) {
-
+                Log.d("注册失败","原因"+s+"****"+s1);
             }
         });
     }
