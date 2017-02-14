@@ -26,6 +26,7 @@ public class LikeFragment extends BaseFragment {
     WebView webView;
     @BindView(R.id.refresh)
     SwipeRefreshLayout refreshLayout;
+    private MainActivity main;
 
     @Override
     protected void initEvent() {
@@ -37,13 +38,8 @@ public class LikeFragment extends BaseFragment {
         settings.setJavaScriptEnabled(true);
         webView.loadUrl("http://www.baidu.com/");
         webView.setWebViewClient(new LikeWebViewClient());
-        MainActivity main=(MainActivity)context;
-        main.setBackButtonListener(new BaseActivity.BackButtonListener() {
-            @Override
-            public void onClick(View view) {
-                webView.goBack();
-            }
-        });
+
+
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -76,6 +72,24 @@ public class LikeFragment extends BaseFragment {
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             webView.loadUrl("http://www.baidu.com");
             return true;
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            main = (MainActivity)context;
+            if(main.backButtonListener==null){
+                main.setBackButtonListener(new BaseActivity.BackButtonListener() {
+                    @Override
+                    public void onClick(View view) {
+                        webView.goBack();
+                    }
+                });
+            }
+        }else {
+            main.backButtonListener=null;
         }
     }
 }

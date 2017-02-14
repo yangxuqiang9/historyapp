@@ -61,6 +61,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
+                currentFragment.setUserVisibleHint(false);
                 switch (itemId){
                     case R.id.drawer_todayinhository:
                         switchFragment(todayInHistoryFragment);
@@ -85,6 +86,7 @@ public class MainActivity extends BaseActivity {
                     default:
 
                 }
+                currentFragment.setUserVisibleHint(true);
                 drawerLayout.closeDrawer(navagtion);
                 return true;
             }

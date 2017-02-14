@@ -64,6 +64,8 @@ public class TodayInHistoryFragment extends BaseFragment implements TodayInHisto
         initTime();
         initRecyclerView();
         addListener();
+        swipeRefresh.setRefreshing(true);
+        new TodayInHistoryPresenter(TodayInHistoryFragment.this).getData(1,1);
     }
 
     private void addListener() {
