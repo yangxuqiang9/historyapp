@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     protected BaseActivity mContext;
     private List<Activity> mActivitys=new ArrayList<>();
+    public BackButtonListener backButtonListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,5 +61,18 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(backButtonListener!=null){
+            backButtonListener.onClick(null);
+        }
+    }
+    public void setBackButtonListener(BackButtonListener backButtonListener){
+        this.backButtonListener=backButtonListener;
+    }
+    public interface BackButtonListener{
+        void onClick(View view);
     }
 }

@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity {
                     case R.id.drawer_like:
                         switchFragment(likeFragment);
                         currentFragment=likeFragment;
-                        setTitle("收藏");
+                        setTitle("搜索");
                         break;
                     case R.id.drawer_about:
                         switchFragment(aboutFragment);
@@ -132,6 +132,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        if(backButtonListener!=null){
+            super.onBackPressed();
+            return;
+        }
         if(navagtion.isShown()){
             drawerLayout.closeDrawers();
         }else {
