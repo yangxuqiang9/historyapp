@@ -50,8 +50,8 @@ android {
     }
     applicationVariants.all{ variants ->
         variants.outputs.each { output ->
-
-            output.outputFile=new File("litu"+output.versionCode+buildTime()+".apk")
+            def file =variants.outputs[0].outputFile
+            output.outputFile=new File(file.parent,"litu"+output.versionCode+buildTime()+".apk")
         }
 
     }

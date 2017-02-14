@@ -28,6 +28,12 @@ public class BaseApplication extends MultiDexApplication {
         printAppInfo();
         //注册友盟推送
         registUmeng();
+        //加载腾讯x5
+        loadX5();
+    }
+
+    private void loadX5() {
+
     }
 
     private void registUmeng() {
